@@ -1,0 +1,23 @@
+```
+-- db.sqlite
+
+-- Create tables for map data and flight requests
+
+CREATE TABLE IF NOT EXISTS maps (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    data BLOB
+);
+
+CREATE TABLE IF NOT EXISTS flight_requests (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    polygon_boundaries TEXT,
+    request_data TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create indexes for faster query performance
+
+CREATE INDEX IF NOT EXISTS idx_maps_data ON maps (data);
+
+CREATE INDEX IF NOT EXISTS idx_flight_requests_polygon_boundaries ON flight_requests (polygon_boundaries);
+```
